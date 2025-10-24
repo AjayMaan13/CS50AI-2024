@@ -252,12 +252,12 @@ def model_check(knowledge, query):
             model_false = model.copy()
             model_false[p] = False
 
-            # Ensure entailment holds in both models
+            # Ensure entailment holds in both models, i.e 2^n problem using recursive graphs algo
             return (check_all(knowledge, query, remaining, model_true) and
                     check_all(knowledge, query, remaining, model_false))
 
     # Get all symbols in both knowledge and query
-    symbols = set.union(knowledge.symbols(), query.symbols())
+    symbols = set.union(knowledge.symbols(), query.symbols()) # symbols here are the names of each sentence
 
     # Check that knowledge entails query
     return check_all(knowledge, query, symbols, dict())
